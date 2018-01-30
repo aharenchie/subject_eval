@@ -1,0 +1,7 @@
+{% extends "sound_eval/base.html" %}
+
+{% block content %}
+<h2>聴取実験</h2>
+<!--<a href="{% url 'sound_eval:practice_announcement' %}">テスト</a><br>-->
+<input type="button" value="テスト" onclick="location.href='{% url 'sound_eval:practice_announcement' %}'">
+{% endblock content %}

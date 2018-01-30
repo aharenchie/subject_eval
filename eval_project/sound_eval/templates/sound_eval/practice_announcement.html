@@ -1,0 +1,7 @@
+{% extends "sound_eval/base.html" %}
+
+{% block content %}
+<h2>1度練習します</h2>
+<input type="button" value="練習する" onClick="location.href='{% url 'sound_eval:practice' %}'">
+<input type="button" value="戻る" onClick="history.back()">
+{% endblock content %}

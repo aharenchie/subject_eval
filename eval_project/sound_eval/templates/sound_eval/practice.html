@@ -1,0 +1,15 @@
+{% extends "sound_eval/base.html" %}
+
+{% block content %}
+<h3>ボタンを押すと音が流れます。X, A, Bの順番で音を聞いてください。</h3>
+<form action="" method="post">
+  <input type="submit" name="button" value="再生ボタン"> 
+</form>  
+<hr>
+<h3>Xは, AとBのどちらが近いですか？</h3>
+<form method="post" action="">
+  <input type="radio" name="q1" value="A"> A
+  <input type="radio" name="q1" value="B"> B
+  <p><input type="submit" value="送信する"></p>
+</form>
+{% endblock content %}
