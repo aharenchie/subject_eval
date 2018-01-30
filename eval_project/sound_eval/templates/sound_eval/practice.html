@@ -13,8 +13,8 @@
 <h3>Xは, AとBのどちらが近いですか？</h3>
 <form method="post">
   {% csrf_token %}
-  <input type="radio" name="q1" value="A"> A
-  <input type="radio" name="q1" value="B"> B
+  <input type="radio" name="select_id" value="A"> A
+  <input type="radio" name="select_id'" value="B"> B
   <p><input type="submit" name="send_button" value="送信する"></p>
 </form>
 {% endblock content %}

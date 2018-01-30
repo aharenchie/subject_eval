@@ -4,13 +4,12 @@ import pyaudio
 import wave
 import sys
 
-def main_func():
+def main_func(data_dir):
     soud_list=['A02.wav','A05.wav','A06.wav']
-    dir_path='/Users/aharenchie/workspace/sample/web/subject_eval/voice_demo/'
     CHUNK = 1024
 
     for soud in soud_list:
-        soud_name = dir_path+soud
+        soud_name = data_dir+soud
         wf = wave.open(soud_name, 'rb')
         # instantiate PyAudio (1)
         p = pyaudio.PyAudio()
