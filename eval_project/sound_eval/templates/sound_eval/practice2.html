@@ -1,0 +1,21 @@
+{% extends "sound_eval/base.html" %}
+
+{% block content %}
+<h3>2番だよ</h3>
+<h3>ボタンを押すと音が流れます。X, A, Bの順番で音を聞いてください。</h3>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="submit" name="play_button" value="再生ボタン">
+  <p>連打はやめてください。</p>
+</form>
+
+<hr>
+<h3>Xは, AとBのどちらが近いですか？</h3>
+<form method="post">
+  {% csrf_token %}
+  <input type="radio" name="select_type" value="A"> A
+  <input type="radio" name="select_type" value="B"> B
+  <p><input type="submit" name="send_button" value="送信する"></p>
+</form>
+{% endblock content %}
