@@ -30,6 +30,13 @@ def practice(request):
     
     return render(request, 'sound_eval/practice.html')    
 
+def playaudio(request):
+    return render(request, 'sound_eval/playaudio.html')
+
+def playaudio2():    
+    data_dir= WORKSPACE_DIR + '/management/data/eval1/' # 音声データ
+    main_func(data_dir) # 音声再生    
+
 def experiment_announcement(request):
     return render(request,'sound_eval/experiment_announcement.html')
 

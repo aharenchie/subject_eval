@@ -2,6 +2,6 @@
 
 {% block content %}
 <h2>1度練習します</h2>
-<input type="button" value="練習する" onClick="location.href='{% url 'sound_eval:practice' %}'">
-<input type="button" value="戻る" onClick="history.back()">
+<input type="button" value="練習する" class="button_type" onClick="location.href='{% url 'sound_eval:practice' %}'">
+<input type="button" value="戻る" class="button_type" onClick="history.back()">
 {% endblock content %}

@@ -3,11 +3,30 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="viewport" content="content">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css"></link>
+		<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
         <title>聴取実験</title>
     </head>
     <body>
-        {% block content %}
-            {{ content }}
-        {% endblock %}
+	<style type="text/css">
+	  ul.media_list{
+	  }
+	  
+	  ul.media_list li{
+	     display: inline-block;
+	     margin-right: 1em;
+         font-size: 20pt;
+      }
+	  
+	  .button_type{
+	      font-size: 100pt;
+	  }
+	</style>
+	<center>
+    {% block content %}
+    {{ content }}
+    {% endblock %}
+	</center>
     </body>
 </html>
