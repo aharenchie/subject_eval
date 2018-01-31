@@ -6,4 +6,3 @@ class Question(models.Model):
 
 class Time_data(models.Model):
     start_time = models.FloatField(default=100.00)
-    flag = models.BooleanField(default=False)

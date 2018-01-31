@@ -2,16 +2,24 @@
 {% block content %}
 <script>
 $( document ).ready( function () {
+　　
     //  -----------------------------------------------------------------
     //  [順次全曲再生するパターン]
     //  button_play_allボタンが押されたら全曲再生する
-    //  -----------------------------------------------------------------
+　　//  -----------------------------------------------------------------
+
+　　// 送信ボタンのロック
+　　var sb = document.getElementById("send_button");
+　　sb.disabled = "true";
+
     $( "#button_play_all" ).click( function () {
 
- 
         //  media_playerの中にあるsourceタグを列挙
         var mySources = $( "#media_player" ).children( "source" );
 　　　　var myName = $( "#media_name" ).children( "li" );
+
+　　　　// 送信ボタンのロック
+　　　　sb.disabled = "true";
 
         // 文字色初期化
         var media_count = 0
@@ -39,6 +47,7 @@ $( document ).ready( function () {
                 myAudioPlayer.src = myPath;
                 myAudioPlayer.load();
 				myAudioPlayer.play();
+				sb.disabled = "";	 
             }
         } );
  
@@ -76,7 +85,9 @@ $( document ).ready( function () {
 <form method="post">
   {% csrf_token %}
   <input type="radio" name="select_type" value="A"> A
-  <input type="radio" name="select_type" value="B"> B
-  <p><input type="submit" name="send_button" value="送信する" class="button_type" disabled></p>
+  <input type="radio" name="select_type" value="B" style="margin-left: 4em;"> B  
+  <p style="margin-top: 2em;">
+	<input id="send_button" type="submit" name="send_button" value="送信する" class="button_type">
+  </p>
 </form>
 {% endblock content %}
