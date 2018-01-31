@@ -2,11 +2,14 @@
 
 ## 環境
 Django 2.0
+
 Python 3.5 ~
 
 ## 実行方法
 git clone subject_eval
+
 cd eval_project
+
 python manage.py runserver
 
 下記のURLにアクセスする
