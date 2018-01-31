@@ -17,6 +17,23 @@ def practice_announcement(request):
     return render(request, 'sound_eval/practice_announcement.html')
 
 def practice(request):
+    data_dir= WORKSPACE_DIR + '/management/data/practice/' # 音声データ
+
+    if request.method == 'POST':
+        # == 再生ボタン押下 ==
+        if 'play_button' in request.POST:
+            main_func(data_dir) # 音声再生  
+                
+        # == 送信ボタン押下 ==
+        elif 'send_button' in request.POST:
+            return render(request,'sound_eval/experiment_announcement.html') 
+    
+    return render(request, 'sound_eval/practice.html')    
+
+def experiment_announcement(request):
+    return render(request,'sound_eval/experiment_announcement.html')
+
+def experiment(request):
     q = Question.objects.get(id=1)
     question_id = q.question_id # 質問ナンバー
     data_dir= WORKSPACE_DIR + '/management/data/eval' + str(question_id) + '/' # 音声データ
@@ -26,39 +43,37 @@ def practice(request):
         # == 再生ボタン押下 ==
         if 'play_button' in request.POST:
             t = Time_data.objects.get(id=1)
-
-            time_flag = t.flag # フラグ
-            
+            time_flag = t.flag # フラグ            
             if time_flag is not True:
                 t.start_time = time.time() # 時間計測
                 t.flag = True
-                
-            main_func(data_dir) # 音声再生  
-                
-            t.save()
+                t.save()
+            
+            main_func(data_dir) # 音声再生
 
         # == 送信ボタン押下 ==
         elif 'send_button' in request.POST:
             t = Time_data.objects.get(id=1)
             q = Question.objects.get(id=1)
-            
+
             time_data= time.time() - t.start_time # 時間計測
             select_type = request.POST['select_type'] # 選択データの取得(A or B)
-            
-            with open(output_file,'a',newline='') as f: # 結果の書き込み 
-               writer = csv.writer(f, lineterminator='\n')
-               writer.writerow([question_id,data_dir,select_type,time_data])
-            
-            t.flag = True
+
+            with open(output_file,'a',newline='') as f: # 結果の書き込み
+                writer = csv.writer(f, lineterminator='\n')
+                writer.writerow([question_id,data_dir,select_type,time_data])
+
+            t.flag = False
             t.save()
+            if question_id < q.question_max:
+                question_id += 1
+                q.question_id = question_id
+                q.save()
+                return render(request,'sound_eval/experiment.html',{'question_id': question_id})
+            else:
+                return render(request, 'sound_eval/end.html')
             
-            #q.question_id = question_id + 1
-            q.question_id = question_id
-            q.save()
-            
-            return render(request,'sound_eval/practice2.html') 
-    
-    return render(request, 'sound_eval/practice.html')    
+    return render(request,'sound_eval/experiment.html',{'question_id': question_id})
 
 def end(request):
     return render(request, 'sound_eval/end.html')

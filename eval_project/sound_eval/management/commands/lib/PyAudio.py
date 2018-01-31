@@ -5,7 +5,7 @@ import wave
 import sys
 
 def main_func(data_dir):
-    soud_list=['A02.wav','A05.wav','A06.wav']
+    soud_list=['A.wav','B.wav','X.wav']
     CHUNK = 1024
 
     for soud in soud_list:
